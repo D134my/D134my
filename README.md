@@ -1,16 +1,30 @@
-### Hi there 👋
+```cpp
+#include <algorithm>
+#include <format>
+#include <iostream>
+#include <ranges>
+#include <vector>
 
-<!--
-**D134my/D134my** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+using namespace std::string_literals;
 
-Here are some ideas to get you started:
+auto main() -> int {
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+  auto const about_me =
+      [](std::vector<std::string> &&technologies) noexcept -> std::nullptr_t {
+    std::cout << "I'm learning : ";
+    std::ranges::copy(technologies,
+                      std::ostream_iterator<std::string>(std::cout, " "));
+    return {};
+  }([](int age) noexcept {
+    std::cout << "I am " << age << " years old." << '\n';
+    return std::vector{"C++"s, "Qt"s};
+  }([](std::string const &name) {
+    std::cout << std::format("Hi my name is {} <3\n", name);
+    return 20;
+  }([]() noexcept { return std::string("Dreamy"); }()
+
+        )));
+
+  return 0;
+}
+```
